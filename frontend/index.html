@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Tracker</title>
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&family=Covered+By+Your+Grace&family=Grandstander:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <nav>
+        <a href="#" data-page="home">HOME</a>
+        <a href="#" data-page="services">SERVICES</a>
+        <a href="#" data-page="signup">SIGN UP</a>
+        <a href="#" data-page="login">LOGIN</a>
+    </nav>
+
+    <div class="hero">
+        <div id="content" class="container">
+            <!-- Home Page -->
+            <div id="home" class="page">
+                <h1>Perfecto_Games</h1>
+                <p>Find games perfect for you based on your preference!
+                </p>
+            </div>
+    
+            <!-- Services Page -->
+            <div id="services" class="page hidden">
+                <h1>Our Services</h1>
+                <p>We offer a range of utility tools including task management, reminders, and more!</p>
+            </div>
+    
+            <!-- Signup Page -->
+            <div id="signup" class="page hidden">
+                <div class="form-container">
+                    <h2>SIGN UP</h2>
+                    <input type="text" id="signup-name" placeholder="Enter your username" required>
+                    <input type="email" id="signup-email" placeholder="Enter your email" required>
+                    <input type="password" id="signup-password" placeholder="Enter your password" required>
+                    <button id="signup-btn">Sign Up</button>
+                    <p id="signup-error" style="color: red; display: none;">Please fill in all fields.</p>
+                </div>
+            </div>
+    
+            <!-- Login Page -->
+            <div id="login" class="page hidden">
+                <div class="form-container">
+                    <h2>LOGIN</h2>
+                    <input type="email" id="login-email" placeholder="Enter your email" required>
+                    <input type="password" id="login-password" placeholder="Enter your password" required>
+                    <button id="login-btn">Login</button>
+                    <p id="login-error" style="color: red; display: none;">Invalid email or password.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="triple triple1">
+        <div class="item i1">
+            <div class="imgdiv">
+                <img src="warframe.webp" alt="warframe poster">
+            </div>
+            
+            <div class="pdiv">
+                <h2>
+                    Warframe
+                </h2>
+
+                <p>
+                    Awaken as an unstoppable warrior and battle alongside your friends in this story-driven free-to-play online action game.
+                </p>
+            </div>
+        </div>
+
+        <div class="item i2">
+            <div class="imgdiv">
+                <img src="apex.jpg" alt="warframe poster">
+            </div>
+
+            <div class="pdiv">
+                <h2>
+                    Apex Legends
+                </h2>
+
+                <p>
+                    Awaken as an unstoppable warrior and battle alongside your friends in this story-driven free-to-play online action game.
+                </p>
+            </div>
+        </div>
+
+        <div class="item i3">
+            <div class="imgdiv">
+                <img src="zenless.png" alt="warframe poster">
+            </div>
+
+            <div class="pdiv">
+                <h2>
+                    Zenless Zone Zero
+                </h2>
+
+                <p>
+                    Awaken as an unstoppable warrior and battle alongside your friends in this story-driven free-to-play online action game.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="tripleheader">
+        <h1>
+            Perfecto's Top 3 Rated Games
+        </h1>
+    </div>
+
+    <script>
+        // Navigation functionality
+        const pages = document.querySelectorAll('.page');
+        const navLinks = document.querySelectorAll('nav a');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', event => {
+                event.preventDefault();
+                const targetPage = link.getAttribute('data-page');
+
+                pages.forEach(page => page.classList.add('hidden'));
+                document.getElementById(targetPage).classList.remove('hidden');
+            });
+        });
+
+       // Signup Functionality
+document.getElementById('signup-btn').addEventListener('click', async () => {
+    const name = document.getElementById('signup-name').value.trim();
+    const email = document.getElementById('signup-email').value.trim();
+    const password = document.getElementById('signup-password').value.trim();
+    const error = document.getElementById('signup-error');
+
+    if (name && email && password) {
+        try {
+            const response = await fetch('http://localhost:2000/api/user/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name, email, password }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                alert('Sign Up Successful! Redirecting to Login page...');
+                error.style.display = 'none';
+                document.getElementById('signup').classList.add('hidden');
+                document.getElementById('login').classList.remove('hidden');
+            } else {
+                error.textContent = data.message || 'Sign Up Failed!';
+                error.style.display = 'block';
+            }
+        } catch (err) {
+            error.textContent = 'An error occurred. Please try again later.';
+            error.style.display = 'block';
+        }
+    } else {
+        error.textContent = 'All fields are required!';
+        error.style.display = 'block';
+    }
+});
+
+// Login Functionality
+document.getElementById('login-btn').addEventListener('click', async () => {
+    const email = document.getElementById('login-email').value.trim();
+    const password = document.getElementById('login-password').value.trim();
+    const error = document.getElementById('login-error');
+
+    if (email && password) {
+        try {
+            const response = await fetch('http://localhost:2000/api/user/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                alert(`Welcome back, ${data.user.name}!`);
+                error.style.display = 'none';
+                localStorage.setItem('user', JSON.stringify(data));
+
+                // Redirect to the home page
+                document.querySelectorAll('.page').forEach(page => page.classList.add('hidden'));
+                document.getElementById('home').classList.remove('hidden');
+            } else {
+                error.textContent = data.message || 'Invalid email or password.';
+                error.style.display = 'block';
+            }
+        } catch (err) {
+            error.textContent = 'An error occurred. Please try again later.';
+            error.style.display = 'block';
+        }
+    } else {
+        error.textContent = 'All fields are required!';
+        error.style.display = 'block';
+    }
+});
+
+    </script>
+</body>
+</html>
