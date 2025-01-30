@@ -18,7 +18,7 @@
         <a href="#" data-page="home">HOME</a>
         <a href="#" data-page="services">SERVICES</a>
         <a href="#" data-page="signup">SIGN UP</a>
-        <a href="#" data-page="login">LOGIN</a>
+        <a href="#" data-page="login" id="LOGINNAME">LOGIN</a>
     </nav>
 
     <div class="hero">
@@ -33,7 +33,7 @@
             <!-- Services Page -->
             <div id="services" class="page hidden">
                 <h1>Our Services</h1>
-                <p>We offer a range of utility tools including task management, reminders, and more!</p>
+                <p>We help you find the perfect games you're craving for!</p>
             </div>
     
             <!-- Signup Page -->
@@ -61,61 +61,83 @@
         </div>
     </div>
     
-    <div class="triple triple1">
-        <div class="item i1">
-            <div class="imgdiv">
-                <img src="warframe.webp" alt="warframe poster">
+    <div class="triplesection">
+        <div class="triple">
+            <div class="item i1">
+                <div class="imgdiv">
+                    <img src="warframe.webp" alt="warframe poster">
+                </div>
+                
+                <div class="pdiv">
+                    <h2>
+                        Warframe
+                    </h2>
+    
+                    <p>
+                        Awaken as an unstoppable warrior and battle alongside your friends in this story-driven free-to-play online action game.
+                    </p>
+                </div>
             </div>
-            
-            <div class="pdiv">
-                <h2>
-                    Warframe
-                </h2>
-
-                <p>
-                    Awaken as an unstoppable warrior and battle alongside your friends in this story-driven free-to-play online action game.
-                </p>
+    
+            <div class="item i2">
+                <div class="imgdiv">
+                    <img src="apex.jpg" alt="warframe poster">
+                </div>
+    
+                <div class="pdiv">
+                    <h2>
+                        Apex Legends
+                    </h2>
+    
+                    <p>
+                        Master an ever-growing roster of legendary characters with powerful abilities, and experience strategic squad play and innovative gameplay in the next evolution of Hero Shooter and Battle Royale.
+                    </p>
+                </div>
+            </div>
+    
+            <div class="item i3">
+                <div class="imgdiv">
+                    <img src="zenless.png" alt="warframe poster">
+                </div>
+    
+                <div class="pdiv">
+                    <h2>
+                        Zenless Zone Zero
+                    </h2>
+    
+                    <p>
+                        Zenless Zone Zero is a brand-new game IP set in a post-apocalyptic metropolitan city. It features an engaging story with a futuristic art style, distinctive characters, and an exhilarating action-orientated combat system.
+                    </p>
+                </div>
             </div>
         </div>
-
-        <div class="item i2">
-            <div class="imgdiv">
-                <img src="apex.jpg" alt="warframe poster">
-            </div>
-
-            <div class="pdiv">
-                <h2>
-                    Apex Legends
-                </h2>
-
-                <p>
-                    Awaken as an unstoppable warrior and battle alongside your friends in this story-driven free-to-play online action game.
-                </p>
-            </div>
-        </div>
-
-        <div class="item i3">
-            <div class="imgdiv">
-                <img src="zenless.png" alt="warframe poster">
-            </div>
-
-            <div class="pdiv">
-                <h2>
-                    Zenless Zone Zero
-                </h2>
-
-                <p>
-                    Awaken as an unstoppable warrior and battle alongside your friends in this story-driven free-to-play online action game.
-                </p>
-            </div>
+    
+        <div class="tripleheader">
+            <h1>
+                Perfecto's Top 3 Highest Rated Games
+            </h1>
         </div>
     </div>
 
-    <div class="tripleheader">
-        <h1>
-            Perfecto's Top 3 Rated Games
-        </h1>
-    </div>
+    
+
+
+    <div class="choose-section">
+        <div class="choosegenre">
+            <div class="choosetitle">
+                <h2>
+                    Choose Your Preferred Genre
+                </h2>
+            </div>
+    
+            <div class="choices">
+                <a href="" data-page="">ADVENTURE</a>
+                <a href="" data-page="">ACTION</a>
+                <a href="" data-page="">RPG</a>
+                <a href="" data-page="">SPORTS</a>
+            </div>
+        </div>
+    </div>  
 
     <script>
         // Navigation functionality
@@ -192,6 +214,9 @@ document.getElementById('login-btn').addEventListener('click', async () => {
                 alert(`Welcome back, ${data.user.name}!`);
                 error.style.display = 'none';
                 localStorage.setItem('user', JSON.stringify(data));
+
+                const loginButton = document.getElementById('LOGINNAME');
+                loginButton.textContent = data.user.name;
 
                 // Redirect to the home page
                 document.querySelectorAll('.page').forEach(page => page.classList.add('hidden'));

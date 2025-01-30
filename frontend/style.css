@@ -58,6 +58,9 @@ nav {
   width: 100vw;
   margin: auto;
 }
+nav #user-name {
+  display: none;
+}
 
 nav a {
   color: white;
@@ -72,7 +75,7 @@ nav a {
 }
 
 nav a:hover {
-  background-color: #373737;
+  background-color: #313131;
   border-radius: 10px;
 }
 
@@ -159,6 +162,7 @@ nav a:hover {
   font-style: bold;
   font-size: 1.2vw;
   margin-top: 0px;
+  margin-bottom: 70px;
   text-align: center;
 }
 
@@ -180,11 +184,13 @@ nav a:hover {
   grid-row-gap: 0px;
   max-height: 30vw;
   background-color: #ffffff;
-  box-shadow: 0px 1px 34px -17px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 1px 20px -17px rgba(0, 0, 0, 0.75);
 }
 .triple .item .pdiv {
+  overflow: hidden;
+  overflow-y: auto;
   display: grid;
-  grid-template-rows: 1.5fr 2fr;
+  grid-template-rows: 1fr 2fr;
   padding: 25px;
 }
 .triple .item .pdiv h2 {
@@ -218,8 +224,46 @@ nav a:hover {
      object-position: center;
 }
 
+.choose-section {
+  background-color: #223563;
+}
+.choose-section .choosegenre {
+  display: flex;
+  flex-direction: column;
+  width: 60vw;
+  margin: 0 auto;
+}
+.choose-section .choosegenre .choosetitle {
+  text-align: center;
+  color: white;
+  font-size: 1.5vw;
+}
+.choose-section .choosegenre .choices {
+  display: flex;
+  justify-content: space-between;
+}
+.choose-section .choosegenre .choices a {
+  color: #1b2a4d;
+  text-decoration: none;
+  padding: 10px 15px;
+  transition: background 0.2s;
+  background-color: #ffffff;
+  border-radius: 10px;
+  border: #818181;
+  font-size: 1vw;
+  font-family: "Afacad", serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+.choose-section .choosegenre .choices a:hover {
+  background-color: rgb(25, 25, 36);
+  color: #ffffff;
+}
+
 @media (max-width: 600px) {
   nav {
+    position: relative;
     flex-direction: column;
   }
   nav li {
@@ -227,7 +271,10 @@ nav a:hover {
   }
   nav a {
     margin: 5px 0;
-    font-size: 3.5vw;
+    font-size: 1.5em;
+  }
+  .hero {
+    height: 100vw;
   }
   .page h1 {
     font-size: 50px;
@@ -235,8 +282,82 @@ nav a:hover {
   .page p {
     font-size: min(4vw, 20px);
   }
+  .triple {
+    width: 80vw;
+    margin: 50px auto;
+    margin-top: 0px;
+    max-height: -moz-min-content;
+    max-height: min-content;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-row-gap: 50px;
+    margin-bottom: 50px;
+  }
+  .triple .item {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 2fr 1fr;
+    grid-column-gap: 50px;
+    grid-row-gap: 0px;
+    min-height: 100vw;
+    height: 150vh;
+    background-color: #ffffff;
+    box-shadow: 0px 1px 20px -17px rgba(0, 0, 0, 0.75);
+  }
+  .triple .item .pdiv {
+    display: grid;
+    grid-template-rows: 1fr 2fr;
+    padding: 25px;
+  }
+  .triple .item .pdiv h2 {
+    text-align: center;
+    font-family: "Outfit", serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: medium;
+  }
+  .triple .item .pdiv p {
+    text-align: justify;
+    font-family: "Outfit", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  }
+  .triple .imgdiv {
+    height: 100%;
+    overflow: hidden;
+  }
+  .triple .imgdiv img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+    -o-object-position: top;
+       object-position: top;
+  }
+  .triple .i3 img {
+    -o-object-position: center;
+       object-position: center;
+  }
+  .tripleheader {
+    font-family: "Afacad", serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: bold;
+    font-size: 1.7vh;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    text-align: center;
+  }
+  .triplesection {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
 }
-@media (min-width: 600px) and (max-width: 1300px) {
+@media (min-width: 1000px) and (max-width: 1300px) {
   nav a {
     margin: 5px 0;
     font-size: 1.8vw;
