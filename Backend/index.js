@@ -9,7 +9,13 @@ dotenv.config();
 const app = express();
 const port = 2000;
 
-app.use(cors());
+const corsOptions = {
+    origin: 'https://perfectogames.netlify.app',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true,  // optional
+};
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use('/api/user', userRoutes)
